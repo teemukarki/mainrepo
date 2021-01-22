@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Liike" representedClassName="Liike" syncable="YES">
+        <attribute name="erikoistekniikka" optional="YES" attributeType="String"/>
+        <attribute name="nimi" attributeType="String"/>
+        <attribute name="paino" optional="YES" attributeType="String"/>
+        <attribute name="painohistoria" optional="YES" attributeType="String"/>
+        <attribute name="poisto_tunniste" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="uusin_tunniste" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="sarjat" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Sarja" inverseName="liike" inverseEntity="Sarja"/>
+        <relationship name="treeni" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treeni" inverseName="liikkeet" inverseEntity="Treeni"/>
+    </entity>
+    <entity name="Sarja" representedClassName="Sarja" syncable="YES">
+        <attribute name="nimi" optional="YES" attributeType="String"/>
+        <attribute name="pituus" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="sarja_erikoistekniikka" optional="YES" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <relationship name="liike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Liike" inverseName="sarjat" inverseEntity="Liike"/>
+    </entity>
+    <entity name="Treeni" representedClassName="Treeni" syncable="YES">
+        <attribute name="nimi" attributeType="String"/>
+        <relationship name="liikkeet" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Liike" inverseName="treeni" inverseEntity="Liike"/>
+        <relationship name="ohjelma" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treeniohjelma" inverseName="treenit" inverseEntity="Treeniohjelma"/>
+    </entity>
+    <entity name="Treeniohjelma" representedClassName="Treeniohjelma" syncable="YES">
+        <attribute name="nimi" attributeType="String"/>
+        <relationship name="treenit" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Treeni" inverseName="ohjelma" inverseEntity="Treeni"/>
+    </entity>
+    <elements>
+        <element name="Liike" positionX="-182.4296875" positionY="118.96875" width="128" height="163"/>
+        <element name="Sarja" positionX="-181.51171875" positionY="255.95703125" width="128" height="103"/>
+        <element name="Treeni" positionX="-182.20703125" positionY="23.375" width="128" height="88"/>
+        <element name="Treeniohjelma" positionX="-181.8359375" positionY="-92.94921875" width="128" height="73"/>
+    </elements>
+</model>
